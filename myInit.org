@@ -1,0 +1,70 @@
+#+TITLE: My Emacs Config
+
+
+* Theme & Font
+#+begin_src emacs-lisp
+(add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
+;;(load-theme 'atom-one-dark t)
+(load-theme 'firebelly t)
+#+end_src
+** Font
+   #+begin_src emacs-lisp
+    (set-frame-font "Monospace Bold 11" nil t)
+   #+end_src
+
+
+* Some Customization
+#+begin_src emacs-lisp
+;;(global-display-line-numbers-mode)
+;;(setq display-line-numbers-type 'relative)
+(global-hl-line-mode)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq c-default-style "linux")
+(setq c-basic-offset 4)
+(c-set-offset 'comment-intro 0)
+#+end_src
+** Backup
+    #+begin_src emacs-lisp
+    (setq backup-directory-alist `(("." . "~/.saves")))
+    #+end_src
+
+
+* Personal Key Binding
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-t") 'tab-new)
+(global-set-key (kbd "C-x C-q") 'tab-close)
+(global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
+#+end_src
+
+
+* Packages
+** Helm
+  #+begin_src emacs-lisp
+  (helm-mode 1)
+  (global-set-key (kbd "C-x b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-s") 'helm-occur)
+  #+end_src
+** Modeline
+  #+begin_src emacs-lisp
+  (doom-modeline-mode 1)
+
+  (ac-config-default)
+  #+end_src
+** Multiple Cursors
+  #+begin_src emacs-lisp
+  (require 'multiple-cursors)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-x <mouse-1>") 'mc/add-cursor-on-click)
+  #+end_src
+** Org
+  #+begin_src emacs-lisp
+  (use-package org
+	       :config
+	       (setq org-ellipsis " ▼"))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  #+end_src

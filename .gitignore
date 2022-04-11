@@ -1,0 +1,10 @@
+atom-one-dark-theme/
+.cache/
+.mc-lists.el
+ac-comphist.dat
+auto-save-list/
+elpa/
+eshell/
+init.el~
+myInit.el
+myInit.org~
