@@ -2,21 +2,24 @@
 
 
 * Theme & Font
+Adds a Custom theme to emacs
+
 #+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/atom-one-dark-theme")
 ;;(load-theme 'atom-one-dark t)
 (load-theme 'firebelly t)
 #+end_src
 ** Font
+   Change the font
+
    #+begin_src emacs-lisp
-    (set-frame-font "Monospace Bold 11" nil t)
+    (set-frame-font "Monospace Bold 12" nil t)
    #+end_src
 
 
 * Some Customization
 #+begin_src emacs-lisp
-;;(global-display-line-numbers-mode)
-;;(setq display-line-numbers-type 'relative)
 (global-hl-line-mode)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -24,18 +27,29 @@
 (setq c-default-style "linux")
 (setq c-basic-offset 4)
 (c-set-offset 'comment-intro 0)
+(setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Backup
+   Keep emacs temp backup files in it's own directory
+
     #+begin_src emacs-lisp
-    (setq backup-directory-alist `(("." . "~/.saves")))
+    (setq backup-directory-alist `(("." . "~/.emacs.d/.emacs_saves")))
     #+end_src
 
+** Register
+   #+begin_src emacs-lisp
+    (set-register ?p '(file . "~/Documents/Notes/SelfDrivingCar.org"))
+    (set-register ?a '(file . "~/Learning/MiniFlow")) 
+    
+   #+end_src
+   
 
 * Personal Key Binding
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-t") 'tab-new)
 (global-set-key (kbd "C-x C-q") 'tab-close)
 (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-c c") 'tab-switcher)
 #+end_src
 
 
@@ -51,6 +65,9 @@
 ** Modeline
   #+begin_src emacs-lisp
   (doom-modeline-mode 1)
+  
+  ;;(require 'simple-modeline)
+  ;;(simple-modeline-mode)
 
   (ac-config-default)
   #+end_src
@@ -61,10 +78,63 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-x <mouse-1>") 'mc/add-cursor-on-click)
   #+end_src
+** Dashboard
+  #+begin_src emacs-lisp
+    (dashboard-setup-startup-hook)
+    ;; (setq dashboard-startup-banner 'logo)
+    (setq dashboard-startup-banner "/home/ssap/.emacs.d/emacs_new.png")
+    (setq dashboard-center-content t)
+    (setq dashboard-set-init-info nil)
+    (setq dashboard-set-footer nil)
+    (setq dashboard-banner-logo-title nil)  
+    (setq dashboard-items '((registers . 6) (recents  . 6) ))
+  #+end_src   
 ** Org
   #+begin_src emacs-lisp
   (use-package org
 	       :config
 	       (setq org-ellipsis " ▼"))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  #+end_src
+
+** Elfeed
+  #+begin_src emacs-lisp
+  (setq elfeed-feeds' ("https://hnrss.org/frontpage"
+                       "https://hnrss.org/best" ) 
+		       
+  )
+  #+end_src
+** Hydra
+  #+begin_src emacs-lisp
+  (defhydra hydra-windowing-options (:color red)
+  "
+     Window Move         Window Resize 
+    -------------------------------------
+    _p_ : Move Up        _<up>_   : Shrink Window
+    _n_ : Move Down      _<down>_ : Enlarge Window
+    _b_ : Move Left      _<left>_ : Shrink Window Left
+    _f_ : Move Right     _<right>_: Enlarge Window Right
+  "
+    ("p" windmove-swap-states-up nil)
+    ("n" windmove-swap-states-down nil)
+    ("b" windmove-swap-states-left nil)
+    ("f" windmove-swap-states-right nil)
+
+    ("<up>" shrink-window nil)
+    ("<down>" enlarge-window nil)
+    ("<right>" shrink-window-horizontally nil)
+    ("<left>" enlarge-window-horizontally nil))
+  (global-set-key(kbd "C-c m") 'hydra-windowing-options/body)
+  
+  (defhydra hydra-helpful-cmd (:color red)
+  "
+     Helpful Commands
+    --------------------------
+    _l_ : Show Line Numbers
+    
+
+  "
+  ("l" display-line-numbers-mode nil))
+  (global-set-key (kbd "C-c h") 'hydra-helpful-cmd/body)
+
   #+end_src

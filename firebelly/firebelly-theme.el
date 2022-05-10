@@ -18,8 +18,15 @@
   ;; This beautiful palette is shamelessly stolen from chris
   ;; kempson's base16: https://github.com/chriskempson/base16
   ((palette
-    '("#ac4142" "#d28445" "#f4bf75" "#90a959"
-      "#75b5aa" "#6a9fb5" "#aa759f" "#8f5536" "#d9d9d9"))
+    '("#a1393a" ; RED
+      "#d28445"  ;ORANGE
+      "#f4bf75" ; YELLOW
+      "#90a959" ; GREEN 
+      "#75b5aa" ; LIGHT BLUE
+      "#699159" ; 
+      "#aa759f" ; PURPLE
+      "#8f5536" ; LIGHT RED
+      "#d9d9d9"))
    ;; Simple grayscale palette.
    (greys
     '("#151515" "#292929" "#954141" "#555555"
@@ -37,9 +44,9 @@
      `(default
        ((t (:background ,(grey 0) :foreground ,(grey 7)))))
      `(cursor
-       ((t (:background ,(grey 5)))))
+       ((t (:background , "#ffffff"))))
      `(highlight
-       ((t (:background ,(grey 1)))))
+       ((t (:background ,(grey 0)))))
      `(shadow
        ((t (:foreground ,(grey 6)))))
      `(isearch
@@ -75,9 +82,10 @@
        ((t (:foreground ,(grey 7)))))
      ;; Regions are slightly lighter.
      `(region
-       ((t (:background ,(grey 5)))))
+       ((t (:background ,(grey 3)))))
      `(secondary-selection
        ((t (:background ,(grey 2)))))
+
     ;;;; Styling code.
      ;; Comments are lighter than their delimiters.
      `(font-lock-comment-face
@@ -90,7 +98,7 @@
      `(font-lock-function-name-face
        ((t (:foreground ,(color 3)))))
      `(font-lock-variable-name-face
-       ((t (:foreground ,(grey 2)))))
+       ((t (:foreground , (color 0)))))
      `(font-lock-builtin-face
        ((t (:foreground ,(color 6)))))
      `(font-lock-constant-face
@@ -101,6 +109,7 @@
        ((t (:foreground ,(color 5) :background ,(grey 1)))))
      `(font-lock-keyword-face
        ((t (:foreground ,(color 6)))))
+
     ;;;; Styling extensions.
      ;; Erc faces.
      `(erc-notice-face
@@ -143,5 +152,19 @@
        ((t (:foreground ,(color 0) :background ,(grey 1)))))
      ;; linum-relative faces
      `(linum-relative-current-face
-       ((t (:background ,(grey 0) :foreground ,(color 1))))))))
+       ((t (:background ,(grey 0) :foreground ,(color 1)))))
+     ; Helm
+     `(helm-selection
+       ((t (:background ,"#444444"))))
+
+   ;; tab-bar-mode
+     `(tab-bar-tab-inactive
+       ((t (:background, "#000000" :foreground, "#6e6e6e"))))
+     `(tab-bar-tab
+       ((t (:background, "#505050" :foreground, "#b8b8b8"))))
+     `(tab-bar
+       ((t (:background, "#151515"))))
+     
+
+     )))
 
