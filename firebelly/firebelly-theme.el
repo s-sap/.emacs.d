@@ -16,12 +16,13 @@
 (provide-theme 'firebelly)
 (let
   ;; This beautiful palette is shamelessly stolen from chris
-  ;; kempson's base16: https://github.com/chriskempson/base16
+    ;; kempson's base16: https://github.com/chriskempson/base16
+    ;; 90a959
   ((palette
     '("#a1393a" ; RED
       "#d28445"  ;ORANGE
       "#f4bf75" ; YELLOW
-      "#90a959" ; GREEN 
+      "#6798DB" ; GREEN 
       "#75b5aa" ; LIGHT BLUE
       "#699159" ; 
       "#aa759f" ; PURPLE

@@ -24,9 +24,9 @@ Adds a Custom theme to emacs
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(setq c-default-style "linux")
-(setq c-basic-offset 4)
-(c-set-offset 'comment-intro 0)
+;(setq c-default-style "linux")
+;(setq c-basic-offset 4)
+;(c-set-offset 'comment-intro 0)
 (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Backup
@@ -131,7 +131,6 @@ Adds a Custom theme to emacs
      Helpful Commands
     --------------------------
     _l_ : Show Line Numbers
-    
 
   "
   ("l" display-line-numbers-mode nil))
