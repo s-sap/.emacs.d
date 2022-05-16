@@ -22,7 +22,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(elfeed dashboard xelb use-package typit treemacs tablist spinner shell-toggle quilt popwin org-bullets multiple-cursors markdown-mode helm goto-chg doom-modeline company auto-complete)))
+   '(magit vterm centered-window yasnippet-snippets yasnippet elfeed dashboard xelb use-package typit tablist spinner quilt popwin org-bullets multiple-cursors markdown-mode helm goto-chg doom-modeline auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
