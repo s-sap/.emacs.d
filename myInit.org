@@ -25,6 +25,7 @@ Adds a Custom theme to emacs
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(size-indication-mode)
 ;(setq c-default-style "linux")
 ;(setq c-basic-offset 4)
 ;(c-set-offset 'comment-intro 0)
@@ -67,10 +68,6 @@ Adds a Custom theme to emacs
 ** Modeline
   #+begin_src emacs-lisp
   (doom-modeline-mode 1)
-  
-  ;;(require 'simple-modeline)
-  ;;(simple-modeline-mode)
-
   (ac-config-default)
   #+end_src
 ** Multiple Cursors
@@ -83,8 +80,8 @@ Adds a Custom theme to emacs
 ** Dashboard
   #+begin_src emacs-lisp
     (dashboard-setup-startup-hook)
-    ;; (setq dashboard-startup-banner 'logo)
-    (setq dashboard-startup-banner "/home/ssap/.emacs.d/emacs_new.png")
+    (setq dashboard-startup-banner 'official)
+    ;(setq dashboard-startup-banner "/home/ssap/.emacs.d/emacs_new.png")
     (setq dashboard-center-content t)
     ;(setq dashboard-set-init-info nil)
     (setq dashboard-set-footer nil)
