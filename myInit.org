@@ -4,13 +4,29 @@
 
 * Theme & Font
 Adds a Custom theme to emacs
-
 #+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/atom-one-dark-theme")
 ;;(load-theme 'atom-one-dark t)
 (load-theme 'firebelly t)
 #+end_src
+
+** Term
+   Term change color
+#+begin_src emacs-lisp
+(custom-set-faces
+ '(term-color-black ((t (:foreground "#3F3F3F" :background "#2B2B2B"))))
+ '(term-color-red ((t (:foreground "#AC7373" :background "#8C5353"))))
+ '(term-color-green ((t (:foreground "#7F9F7F" :background "#9FC59F"))))
+ '(term-color-yellow ((t (:foreground "#DFAF8F" :background "#9FC59F"))))
+ '(term-color-blue ((t (:foreground "#7CB8BB" :background "#4C7073"))))
+ '(term-color-magenta ((t (:foreground "#DC8CC3" :background "#CC9393"))))
+ '(term-color-cyan ((t (:foreground "#93E0E3" :background "#8CD0D3"))))
+ '(term-color-white ((t (:foreground "#DCDCCC" :background "#656555"))))
+ '(term-default-fg-color ((t (:inherit term-color-white))))
+ '(term-default-bg-color ((t (:inherit term-color-black)))))
+#+end_src
+
 ** Font
    Change the font
 
@@ -21,15 +37,18 @@ Adds a Custom theme to emacs
 
 * Some Customization
 #+begin_src emacs-lisp
-(global-hl-line-mode)
+;; Removing some default stuff
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+;; Show file size
 (size-indication-mode)
-;(setq c-default-style "linux")
-;(setq c-basic-offset 4)
-;(c-set-offset 'comment-intro 0)
+;; Transparency Window
+(set-frame-parameter (selected-frame) 'alpha '(70 . 65))
+(add-to-list 'default-frame-alist '(alpha . (70 . 65)))
+
 (setq browse-url-browser-function 'eww-browse-url)
+;; Centered mode
 (centered-window-mode)
 #+end_src
 ** Backup
@@ -53,6 +72,7 @@ Adds a Custom theme to emacs
 (global-set-key (kbd "C-x C-q") 'tab-close)
 (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c c") 'tab-switcher)
+(global-set-key (kbd "C-c t") 'vterm-other-window)
 #+end_src
 
 
