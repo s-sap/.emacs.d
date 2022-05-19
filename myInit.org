@@ -41,13 +41,14 @@ Adds a Custom theme to emacs
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(setq org-src-fontify-natively t)
 ;; Show file size
 (size-indication-mode)
 ;; Transparency Window
-(set-frame-parameter (selected-frame) 'alpha '(70 . 65))
-(add-to-list 'default-frame-alist '(alpha . (70 . 65)))
+(set-frame-parameter (selected-frame) 'alpha '(75 . 65))
+(add-to-list 'default-frame-alist '(alpha . (72 . 55)))
 
-(setq browse-url-browser-function 'eww-browse-url)
+(setq browse-url-browser-function 'w3m-browse-url)
 ;; Centered mode
 (centered-window-mode)
 #+end_src
@@ -60,8 +61,8 @@ Adds a Custom theme to emacs
 
 ** Register
 	     #+begin_src emacs-lisp
-	      (set-register ?p '(file . "~/Documents/Notes/SelfDrivingCar.org"))
-	      (set-register ?a '(file . "~/Learning/MiniFlow")) 
+	      (set-register ?p '(file . "~/Documents/Notes"))
+	      (set-register ?a '(file . "~/.emacs.d")) 
 
 	     #+end_src
 
@@ -73,6 +74,23 @@ Adds a Custom theme to emacs
 (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c c") 'tab-switcher)
 (global-set-key (kbd "C-c t") 'vterm-other-window)
+
+(defun ash-term-hooks ()
+  ;; dabbrev-expand in term
+  (define-key term-raw-escape-map "/"
+    (lambda ()
+      (interactive)
+      (let ((beg (point)))
+        (dabbrev-expand nil)
+        (kill-region beg (point)))
+      (term-send-raw-string (substring-no-properties (current-kill 0)))))
+  ;; yank in term (bound to C-c C-y)
+  (define-key term-raw-escape-map "\C-y"
+    (lambda ()
+       (interactive)
+       (term-send-raw-string (current-kill 0)))))
+  (add-hook 'term-mode-hook 'ash-term-hooks)
+
 #+end_src
 
 
@@ -119,7 +137,8 @@ Adds a Custom theme to emacs
 ** Elfeed
   #+begin_src emacs-lisp
   (setq elfeed-feeds' ("https://hnrss.org/frontpage"
-                       "https://hnrss.org/best" ) 
+                       "https://hnrss.org/best" 
+		       "https://www.afp.gov.au/feed/media-releases" ) 
 		       
   )
 
