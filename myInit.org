@@ -1,71 +1,47 @@
-#+TITLE: My Emacs Config
+#+TITLE: Emacs Config
 #+author: s-sap
-
+#+startup: overview
 
 * Theme & Font
 Adds a Custom theme to emacs
 #+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/atom-one-dark-theme")
-;;(load-theme 'atom-one-dark t)
 (load-theme 'firebelly t)
-#+end_src
-
-** Term
-   Term change color
-#+begin_src emacs-lisp
-(custom-set-faces
- '(term-color-black ((t (:foreground "#3F3F3F" :background "#2B2B2B"))))
- '(term-color-red ((t (:foreground "#AC7373" :background "#8C5353"))))
- '(term-color-green ((t (:foreground "#7F9F7F" :background "#9FC59F"))))
- '(term-color-yellow ((t (:foreground "#DFAF8F" :background "#9FC59F"))))
- '(term-color-blue ((t (:foreground "#7CB8BB" :background "#4C7073"))))
- '(term-color-magenta ((t (:foreground "#DC8CC3" :background "#CC9393"))))
- '(term-color-cyan ((t (:foreground "#93E0E3" :background "#8CD0D3"))))
- '(term-color-white ((t (:foreground "#DCDCCC" :background "#656555"))))
- '(term-default-fg-color ((t (:inherit term-color-white))))
- '(term-default-bg-color ((t (:inherit term-color-black)))))
 #+end_src
 
 ** Font
    Change the font
-
    #+begin_src emacs-lisp
-    (set-frame-font "Monospace Bold 12" nil t)
+    (add-to-list 'default-frame-alist '(font . "Monospace Bold"))
+    ;(set-frame-font "Monospace Bold 12" nil t)
    #+end_src
 
 
 * Some Customization
 #+begin_src emacs-lisp
-;; Removing some default stuff
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(setq org-src-fontify-natively t)
-;; Show file size
-(size-indication-mode)
-;; Transparency Window
-(set-frame-parameter (selected-frame) 'alpha '(75 . 65))
-(add-to-list 'default-frame-alist '(alpha . (72 . 55)))
+  ;; Removing some default stuff
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq org-src-fontify-natively t)
+  ;; Show file size
+  (size-indication-mode)
+  ;; Transparency Window
+  (set-frame-parameter (selected-frame) 'alpha '(75 . 65))
+  (add-to-list 'default-frame-alist '(alpha . (72 . 55)))
+  ;; Centered mode
+  (centered-window-mode)
+  ;; Eww
+  (setq browse-url-browser-function 'eww-browse-url)
 
-(setq browse-url-browser-function 'w3m-browse-url)
-;; Centered mode
-(centered-window-mode)
 #+end_src
 ** Backup
-	     Keep emacs temp backup files in it's own directory
+  Keep emacs temp backup files in it's own directory
 
-	      #+begin_src emacs-lisp
-	      (setq backup-directory-alist `(("." . "~/.emacs.d/.emacs_saves")))
-	      #+end_src
-
-** Register
-	     #+begin_src emacs-lisp
-	      (set-register ?p '(file . "~/Documents/Notes"))
-	      (set-register ?a '(file . "~/.emacs.d")) 
-
-	     #+end_src
-
+   #+begin_src emacs-lisp
+   (setq backup-directory-alist `(("." . "~/.emacs.d/.emacs_saves")))
+   #+end_src
+   
 
 * Personal Key Binding
 #+begin_src emacs-lisp
@@ -74,39 +50,45 @@ Adds a Custom theme to emacs
 (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c c") 'tab-switcher)
 (global-set-key (kbd "C-c t") 'vterm-other-window)
-
-(defun ash-term-hooks ()
-  ;; dabbrev-expand in term
-  (define-key term-raw-escape-map "/"
-    (lambda ()
-      (interactive)
-      (let ((beg (point)))
-        (dabbrev-expand nil)
-        (kill-region beg (point)))
-      (term-send-raw-string (substring-no-properties (current-kill 0)))))
-  ;; yank in term (bound to C-c C-y)
-  (define-key term-raw-escape-map "\C-y"
-    (lambda ()
-       (interactive)
-       (term-send-raw-string (current-kill 0)))))
-  (add-hook 'term-mode-hook 'ash-term-hooks)
-
 #+end_src
 
 
-* Packages
-** Helm
+* Org
   #+begin_src emacs-lisp
-  (helm-mode 1)
-  (global-set-key (kbd "C-x b") 'helm-buffers-list)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-s") 'helm-occur)
+    (setq org-ellipsis " ▼")
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  #+end_src
+
+
+* Packages
+** Ivy
+  #+begin_src emacs-lisp
+    (ivy-mode 1)
+    (ivy-posframe-mode 1)
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+    (global-set-key (kbd "C-s") 'swiper-isearch)
+
+    ;; ;; (global-set-key (kbd "M-x") 'counsel-M-x)
+    ;; ;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    ;; ;; (global-set-key (kbd "M-y") 'counsel-yank-pop)
+    ;; ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    ;; ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    ;; ;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    ;; ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    ;; ;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+    ;; ;; (global-set-key (kbd "<f2> j") 'counsel-set-variable)
+    ;; (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+    ;; (global-set-key (kbd "C-c v") 'ivy-push-view)
+    ;; (global-set-key (kbd "C-c V") 'ivy-pop-view)
+
+    ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    ;; (global-set-key (kbd "M-x") 'helm-M-x)
+    ;; (global-set-key (kbd "C-s") 'helm-occur)
   #+end_src
 ** Modeline
   #+begin_src emacs-lisp
-  (doom-modeline-mode 1)
-  (ac-config-default)
+    (doom-modeline-mode 1)
+    ;;(ac-config-default)
   #+end_src
 ** Multiple Cursors
   #+begin_src emacs-lisp
@@ -117,30 +99,35 @@ Adds a Custom theme to emacs
   #+end_src
 ** Dashboard
   #+begin_src emacs-lisp
-    (dashboard-setup-startup-hook)
-    (setq dashboard-startup-banner 'official)
-    ;(setq dashboard-startup-banner "/home/ssap/.emacs.d/emacs_new.png")
-    (setq dashboard-center-content t)
-    ;(setq dashboard-set-init-info nil)
-    (setq dashboard-set-footer nil)
-    (setq dashboard-banner-logo-title nil)  
-    (setq dashboard-items '((registers . 6) (recents  . 4) ))
+	    (dashboard-setup-startup-hook)
+            (setq dashboard-startup-banner 'official)
+	    (setq dashboard-center-content t)
+	    (setq dashboard-set-init-info nil)
+	    (setq dashboard-set-footer nil)
+	    (setq dashboard-banner-logo-title nil)  
+	    (setq dashboard-show-shortcuts nil)
+	    (setq dashboard-set-heading-icons t)
+	    (setq dashboard-set-file-icons t)
+	    (setq dashboard-items '((projects . 5)
+				    (recents  . 4)))
   #+end_src   
-** Org
-  #+begin_src emacs-lisp
-  (use-package org
-	       :config
-	       (setq org-ellipsis " ▼"))
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  #+end_src
-
 ** Elfeed
   #+begin_src emacs-lisp
-  (setq elfeed-feeds' ("https://hnrss.org/frontpage"
-                       "https://hnrss.org/best" 
-		       "https://www.afp.gov.au/feed/media-releases" ) 
-		       
-  )
+    (setq elfeed-feeds  
+	  '(
+	    ;; HackerNews
+	    ("https://hnrss.org/frontpage" HN Frontpage)
+	    ("https://hnrss.org/best" HN Best)
+	    ;; News
+	    ("https://www.afp.gov.au/feed/media-releases" AFP)
+	    ("https://www.justice.gov/feeds/opa/justice-news.xml" DOJ)
+
+    ))  
+
+    (setq-default elfeed-search-filter "@4-days-ago +unread")  
+    (setq-default elfeed-search-title-max-width 100)  
+    (setq-default elfeed-search-title-min-width 100)  
+
 
   #+end_src
 ** Hydra
@@ -181,7 +168,17 @@ Adds a Custom theme to emacs
 
 ** Yasnippet
   #+begin_src emacs-lisp
-  (yas-global-mode 1)
+   (yas-global-mode 1)
   #+end_src
 *** TODO
     Add custom snippet
+    
+
+** LSP
+#+begin_src emacs-lisp
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'python-mode-hook 'lsp)
+  
+  (setq lsp-headerline-breadcrumb-enable nil)
+#+end_src
