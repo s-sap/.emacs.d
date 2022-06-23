@@ -187,7 +187,7 @@
        '(elfeed-search-tag-face ((t (:foreground "gray" :height 0.8))))
        '(elfeed-search-title-face ((t (:foreground "gray55" :underline "gray25" :height 1.3))))
        '(highlight ((t (:background "gray40"))))
- 
+       '(hl-line ((t (:inherit highlight :extend t :background "gray25" :foreground "gainsboro" :box (:line-width (1 . 1) :color "gray10" :style released-button))))) 
       
      )))
 
