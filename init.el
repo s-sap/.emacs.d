@@ -12,6 +12,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(elfeed-search-filter "@4-days-ago +unread")
+ '(elfeed-search-title-max-width 100)
+ '(elfeed-search-title-min-width 100)
  '(package-selected-packages
    '(magit elfeed haskell-mode vterm org-bullets centered-window all-the-icons projectile multiple-cursors doom-modeline helm hydra dashboard)))
 
@@ -20,4 +23,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(highlight ((t (:background "gray40")))))
+
+ )
