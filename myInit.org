@@ -5,17 +5,12 @@
 * Theme & Font
 Adds a Custom theme to emacs
 #+begin_src emacs-lisp
-(add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
-(load-theme 'firebelly t)
+  ; Theme
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/firebelly")
+  (load-theme 'firebelly t)
+   ; Change the font
+  (add-to-list 'default-frame-alist '(font . "Monospace Bold"))
 #+end_src
-
-** Font
-   Change the font
-   #+begin_src emacs-lisp
-    (add-to-list 'default-frame-alist '(font . "Monospace Bold"))
-    ;(set-frame-font "Monospace Bold 12" nil t)
-   #+end_src
-
 
 * Some Customization
 #+begin_src emacs-lisp
@@ -27,13 +22,12 @@ Adds a Custom theme to emacs
   ;; Show file size
   (size-indication-mode)
   ;; Transparency Window
-  (set-frame-parameter (selected-frame) 'alpha '(75 . 65))
-  (add-to-list 'default-frame-alist '(alpha . (72 . 55)))
+;  (set-frame-parameter (selected-frame) 'alpha '(50 . 50))
+  (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
   ;; Centered mode
   (centered-window-mode)
   ;; Eww
   (setq browse-url-browser-function 'eww-browse-url)
-
 #+end_src
 ** Backup
   Keep emacs temp backup files in it's own directory
@@ -41,7 +35,6 @@ Adds a Custom theme to emacs
    #+begin_src emacs-lisp
    (setq backup-directory-alist `(("." . "~/.emacs.d/.emacs_saves")))
    #+end_src
-   
 
 * Personal Key Binding
 #+begin_src emacs-lisp
@@ -52,38 +45,20 @@ Adds a Custom theme to emacs
 (global-set-key (kbd "C-c t") 'vterm-other-window)
 #+end_src
 
-
 * Org
   #+begin_src emacs-lisp
     (setq org-ellipsis " ▼")
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   #+end_src
 
-
 * Packages
-** Ivy
+** Helm
   #+begin_src emacs-lisp
-    (ivy-mode 1)
-    (ivy-posframe-mode 1)
-    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-    (global-set-key (kbd "C-s") 'swiper-isearch)
-
-    ;; ;; (global-set-key (kbd "M-x") 'counsel-M-x)
-    ;; ;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-    ;; ;; (global-set-key (kbd "M-y") 'counsel-yank-pop)
-    ;; ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-    ;; ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-    ;; ;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
-    ;; ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-    ;; ;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-    ;; ;; (global-set-key (kbd "<f2> j") 'counsel-set-variable)
-    ;; (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-    ;; (global-set-key (kbd "C-c v") 'ivy-push-view)
-    ;; (global-set-key (kbd "C-c V") 'ivy-pop-view)
-
-    ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    ;; (global-set-key (kbd "M-x") 'helm-M-x)
-    ;; (global-set-key (kbd "C-s") 'helm-occur)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+    (global-set-key (kbd "C-s") 'helm-occur)
+    (global-set-key (kbd "C-c d") 'ibuffer)
   #+end_src
 ** Modeline
   #+begin_src emacs-lisp
@@ -111,25 +86,6 @@ Adds a Custom theme to emacs
 	    (setq dashboard-items '((projects . 5)
 				    (recents  . 4)))
   #+end_src   
-** Elfeed
-  #+begin_src emacs-lisp
-    (setq elfeed-feeds  
-	  '(
-	    ;; HackerNews
-	    ("https://hnrss.org/frontpage" HN Frontpage)
-	    ("https://hnrss.org/best" HN Best)
-	    ;; News
-	    ("https://www.afp.gov.au/feed/media-releases" AFP)
-	    ("https://www.justice.gov/feeds/opa/justice-news.xml" DOJ)
-
-    ))  
-
-    (setq-default elfeed-search-filter "@4-days-ago +unread")  
-    (setq-default elfeed-search-title-max-width 100)  
-    (setq-default elfeed-search-title-min-width 100)  
-
-
-  #+end_src
 ** Hydra
   #+begin_src emacs-lisp
   (defhydra hydra-windowing-options (:color red)
@@ -166,19 +122,40 @@ Adds a Custom theme to emacs
   
   #+end_src
 
+
+
+
+** Elfeed
+  #+begin_src emacs-lisp
+    (setq elfeed-feeds  
+	  '(
+	    ;; HackerNews
+	    ("https://hnrss.org/frontpage" HN Frontpage)
+	    ("https://hnrss.org/best" HN Best)
+	    ;; News
+	    ("https://www.afp.gov.au/feed/media-releases" AFP)
+	    ("https://www.justice.gov/feeds/opa/justice-news.xml" DOJ)
+
+    ))  
+
+    (setq-default elfeed-search-filter "@4-days-ago +unread")
+    (setq-default elfeed-search-title-max-width 100)  
+    (setq-default elfeed-search-title-min-width 100)  
+
+  #+end_src
 ** Yasnippet
   #+begin_src emacs-lisp
-   (yas-global-mode 1)
+   ;(yas-global-mode 1)
   #+end_src
 *** TODO
     Add custom snippet
     
-
 ** LSP
 #+begin_src emacs-lisp
-  (add-hook 'c-mode-hook 'lsp)
-  (add-hook 'c++-mode-hook 'lsp)
-  (add-hook 'python-mode-hook 'lsp)
-  
-  (setq lsp-headerline-breadcrumb-enable nil)
+  ;; (add-hook 'c-mode-hook 'lsp)
+  ;; (add-hook 'c++-mode-hook 'lsp)
+  ;; (add-hook 'python-mode-hook 'lsp)
+
+  ;; (setq lsp-headerline-breadcrumb-enable nil)
 #+end_src
+
