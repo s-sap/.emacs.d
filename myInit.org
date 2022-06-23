@@ -75,16 +75,28 @@ Adds a Custom theme to emacs
   #+end_src
 ** Dashboard
   #+begin_src emacs-lisp
-	    (dashboard-setup-startup-hook)
-            (setq dashboard-startup-banner 'official)
-	    (setq dashboard-center-content t)
-	    (setq dashboard-set-init-info nil)
-	    (setq dashboard-set-footer nil)
-	    (setq dashboard-banner-logo-title nil)  
-	    (setq dashboard-show-shortcuts nil)
-	    (setq dashboard-set-heading-icons t)
-	    (setq dashboard-set-file-icons t)
-	    (setq dashboard-items '((projects . 5) ))
+	(dashboard-setup-startup-hook)
+	(setq dashboard-startup-banner 'official)
+	(setq dashboard-center-content t)
+	(setq dashboard-set-init-info nil)
+	(setq dashboard-set-footer nil)
+	(setq dashboard-banner-logo-title nil)  
+	(setq dashboard-show-shortcuts nil)
+	(setq dashboard-set-heading-icons t)
+	(setq dashboard-set-file-icons t)
+	(setq dashboard-items '((projects . 5) ))
+
+	(setq dashboard-set-navigator t)    
+    ;;  Format: "(icon title help action face prefix suffix)"
+	(setq dashboard-navigator-buttons
+	  `(;; line1
+	    ((,(all-the-icons-octicon "rss" :height 1.1 :v-adjust 0.0)
+	     "Rss"
+	     "Elfeed Feed"
+	     (lambda (&rest _) (elfeed)))
+
+	    )))
+
   #+end_src   
 ** Hydra
   #+begin_src emacs-lisp
