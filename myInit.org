@@ -21,7 +21,8 @@ Adds a Custom theme to emacs
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
   (setq org-src-fontify-natively t)
-  ;; Show file size
+  
+;; Show file size
   (size-indication-mode)
   ;; Transparency Window
   (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
@@ -84,7 +85,7 @@ Adds a Custom theme to emacs
 	(setq dashboard-show-shortcuts nil)
 	(setq dashboard-set-heading-icons t)
 	(setq dashboard-set-file-icons t)
-	(setq dashboard-items '((projects . 5) ))
+	(setq dashboard-items '((projects . 5) (bookmarks . 4) ))
 
 	(setq dashboard-set-navigator t)    
     ;;  Format: "(icon title help action face prefix suffix)"
