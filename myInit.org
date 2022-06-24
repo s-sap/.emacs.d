@@ -136,17 +136,16 @@ Adds a Custom theme to emacs
   #+end_src
 
 
-
 ** Elfeed
   #+begin_src emacs-lisp
     (setq elfeed-feeds  
 	  '(
 	    ;News
-	    ("https://hnrss.org/frontpage" HN Frontpage)
-	    ("https://hnrss.org/best" HN Best)
+	    ("https://hnrss.org/frontpage" HN)
+	    ("https://hnrss.org/best" HN)
 	    ("https://www.afp.gov.au/feed/media-releases" AFP)
 	    ("https://www.justice.gov/feeds/opa/justice-news.xml" DOJ)
-	    
+	    ("https://www.reddit.com/r/news/.rss")
 
 
     ))  
@@ -156,6 +155,7 @@ Adds a Custom theme to emacs
     (setq-default elfeed-search-title-min-width 100)  
     (elfeed-update)
   #+end_src
+
 
 ** Yasnippet
   #+begin_src emacs-lisp
