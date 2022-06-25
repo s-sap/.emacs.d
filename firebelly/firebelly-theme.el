@@ -107,7 +107,7 @@
      `(font-lock-type-face
        ((t (:foreground ,(color 4)))))
      `(font-lock-string-face
-       ((t (:foreground ,(color 5) :background ,(grey 1)))))
+       ((t (:foreground ,(color 5) :background ,(grey 1) :slant italic))))
      `(font-lock-keyword-face
        ((t (:foreground ,(color 6)))))
 
