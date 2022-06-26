@@ -182,12 +182,12 @@
       '(org-block ((t (:inherit (fixed-pitch shadow) :extend t :background "gray13"))))
       '(org-ellipsis ((t (:foreground "white smoke"))))
 
-      ; Some extras
+      ; Elfeed
        '(elfeed-search-feed-face ((t (:foreground "dark salmon"))))
        '(elfeed-search-tag-face ((t (:foreground "gray" :height 0.8))))
        '(elfeed-search-title-face ((t (:foreground "gray55" :underline "gray25" :height 1.3))))
        '(highlight ((t (:background "gray40"))))
-       '(hl-line ((t (:inherit highlight :extend t :background "gray25" :foreground "gainsboro" :box (:line-width (1 . 1) :color "gray10" :style released-button))))) 
+       '(hl-line ((t (:inherit highlight :extend t :background "gray25" :foreground "gainsboro" :color "gray10" :style released-button))))
       
      )))
 
