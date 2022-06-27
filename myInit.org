@@ -39,11 +39,12 @@ Adds a Custom theme to emacs
 
 * Personal Key Binding
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-t") 'tab-new)
-(global-set-key (kbd "C-x C-q") 'tab-close)
-(global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
-(global-set-key (kbd "C-c c") 'tab-switcher)
-(global-set-key (kbd "C-c t") 'multi-term-dedicated-toggle)
+  (global-set-key (kbd "C-t") 'tab-new)
+  (global-set-key (kbd "C-x C-q") 'tab-close)
+  (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
+  (global-set-key (kbd "C-c c") 'tab-switcher)
+  (global-set-key (kbd "C-c t") 'multi-term-dedicated-toggle)
+
 #+end_src
 
 * Org
@@ -156,6 +157,53 @@ Adds a Custom theme to emacs
     (elfeed-update)
   #+end_src
 
+** Centaur Tabs
+#+begin_src emacs-lisp
+(centaur-tabs-mode t)
+(defun centaur-tabs-hide-tab (x)
+  "Do no to show buffer X in tabs."
+  (let ((name (format "%s" x)))
+    (or
+     ;; Current window is not dedicated window.
+     (window-dedicated-p (selected-window))
+
+     ;; Buffer name not match below blacklist.
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*lsp" name)
+     (string-prefix-p "*company" name)
+     (string-prefix-p "*Flycheck" name)
+     (string-prefix-p "*tramp" name)
+     (string-prefix-p " *Mini" name)
+     (string-prefix-p "*help" name)
+     (string-prefix-p "*straight" name)
+     (string-prefix-p " *temp" name)
+     (string-prefix-p "*Help" name)
+     (string-prefix-p "*mybuf" name)
+     (string-prefix-p "*elfeed-log" name)
+     (string-prefix-p "*scratch" name)
+     (string-prefix-p "*Messages" name)
+     (string-prefix-p "*dashboard" name)
+     (string-prefix-p "*MULTI-TERM-DEDICATED" name)
+
+     ;; Is not magit buffer.
+     (and (string-prefix-p "magit" name)
+	  (not (file-name-extension name)))
+     )))
+
+(setq centaur-tabs-set-icons t)
+(setq centaur-tabs-plain-icons t)
+(setq centaur-tabs-set-close-button nil)
+(setq centaur-tabs-modified-marker "*")
+
+;(add-hook 'dired-mode-hook 'centaur-tabs-local-mode)
+(global-set-key (kbd "C-c <left>")  'centaur-tabs-backward)
+(global-set-key (kbd "C-c <right>") 'centaur-tabs-forward)
+(global-set-key (kbd "C-t") 'centaur-tabs--create-new-tab)
+
+#+end_src  
 ** Yasnippet
   #+begin_src emacs-lisp
    ;(yas-global-mode 1)
@@ -165,13 +213,13 @@ Adds a Custom theme to emacs
     
 ** LSP
 #+begin_src emacs-lisp
-  ;; (add-hook 'c-mode-hook 'lsp)
-  ;; (add-hook 'c++-mode-hook 'lsp)
-  ;; ;;(add-hook 'python-mode-hook 'lsp)
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
+  ;;(add-hook 'python-mode-hook 'lsp)
 
-  ;; (setq lsp-headerline-breadcrumb-enable nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-diagnostics-provider :none)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-diagnostics-provider :none)
 
 #+end_src
 
