@@ -15,20 +15,20 @@ Adds a Custom theme to emacs
 
 * Some Customization
 #+begin_src emacs-lisp
-  ;; Removing some default stuff
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (setq org-src-fontify-natively t)
-  
-;; Show file size
-  (size-indication-mode)
-  ;; Transparency Window
-  (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
-  ;; Centered mode
-  (centered-window-mode)
-  ;; Eww
-  (setq browse-url-browser-function 'eww-browse-url)
+    ;; Removing some default stuff
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
+    (setq org-src-fontify-natively t)
+
+  ;; Show file size
+    (size-indication-mode)
+    ;; Transparency Window
+    (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
+    ;; Centered mode
+    (centered-window-mode)
+    ;; Eww
+    (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Backup
   Keep emacs temp backup files in it's own directory
@@ -95,6 +95,12 @@ Adds a Custom theme to emacs
 	     "Rss"
 	     "Elfeed Feed"
 	     (lambda (&rest _) (elfeed)))
+
+	    (,(all-the-icons-octicon "unmute" :height 1.1 :v-adjust 0.0)
+	     "Music"
+	     "Bongo Music Player"
+	     (lambda (&rest _) (bongo)))
+
 
 	    )))
 
@@ -187,7 +193,8 @@ Adds a Custom theme to emacs
      (string-prefix-p "*Messages" name)
      (string-prefix-p "*dashboard" name)
      (string-prefix-p "*MULTI-TERM-DEDICATED" name)
-
+     ;(string-prefix-p "*MULTI-TERM-DEDICATED" name)
+     (string-prefix-p "*clangd" name)
      ;; Is not magit buffer.
      (and (string-prefix-p "magit" name)
 	  (not (file-name-extension name)))
@@ -206,7 +213,7 @@ Adds a Custom theme to emacs
 #+end_src  
 ** Yasnippet
   #+begin_src emacs-lisp
-   ;(yas-global-mode 1)
+   (yas-global-mode 1)
   #+end_src
 *** TODO
     Add custom snippet
