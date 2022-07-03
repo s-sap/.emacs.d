@@ -19,6 +19,10 @@ Adds a Custom theme to emacs
     (menu-bar-mode -1)
     (tool-bar-mode -1)
     (scroll-bar-mode -1)
+
+    ; Enable auto-pair
+    (electric-pair-mode 1)
+
     (setq org-src-fontify-natively t)
 
   ;; Show file size
@@ -91,15 +95,17 @@ Adds a Custom theme to emacs
     ;;  Format: "(icon title help action face prefix suffix)"
 	(setq dashboard-navigator-buttons
 	  `(;; line1
-	    ((,(all-the-icons-octicon "rss" :height 1.1 :v-adjust 0.0)
+
+	    ((,(all-the-icons-octicon "rss" :height 1 :v-adjust 0.0)
 	     "Rss"
 	     "Elfeed Feed"
-	     (lambda (&rest _) (elfeed)))
+	     (lambda (&rest _) (elfeed)) ’warning "" "")
 
-	    (,(all-the-icons-octicon "unmute" :height 1.1 :v-adjust 0.0)
+	    (,(all-the-icons-octicon "radio-tower" :height 1 :v-adjust 0.0)
 	     "Music"
 	     "Bongo Music Player"
-	     (lambda (&rest _) (bongo)))
+	     (lambda (&rest _) (bongo)) ’warning "| " "")
+
 
 
 	    )))
@@ -155,6 +161,8 @@ Adds a Custom theme to emacs
 	    ("https://www.unodc.org/unodc/feed/publications.xml" UNODC)
 	    ("https://www.unodc.org/unodc/feed/stories.xml" UNODC)
 
+
+
     ))  
 
     (setq-default elfeed-search-filter "@4-days-ago +unread")
@@ -193,7 +201,7 @@ Adds a Custom theme to emacs
      (string-prefix-p "*Messages" name)
      (string-prefix-p "*dashboard" name)
      (string-prefix-p "*MULTI-TERM-DEDICATED" name)
-     ;(string-prefix-p "*MULTI-TERM-DEDICATED" name)
+     (string-prefix-p "*Bongo" name)
      (string-prefix-p "*clangd" name)
      ;; Is not magit buffer.
      (and (string-prefix-p "magit" name)
@@ -222,6 +230,7 @@ Adds a Custom theme to emacs
 #+begin_src emacs-lisp
   (add-hook 'c-mode-hook 'lsp)
   (add-hook 'c++-mode-hook 'lsp)
+  
   ;;(add-hook 'python-mode-hook 'lsp)
 
   (setq lsp-headerline-breadcrumb-enable nil)
@@ -229,7 +238,6 @@ Adds a Custom theme to emacs
   (setq lsp-diagnostics-provider :none)
 
 #+end_src
-
 
 
 * Comments
@@ -248,4 +256,7 @@ Adds a Custom theme to emacs
 ** Optional Package
   + LSP
   + company
+
+
+
 
