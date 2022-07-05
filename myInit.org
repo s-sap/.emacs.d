@@ -29,10 +29,9 @@ Adds a Custom theme to emacs
     (size-indication-mode)
     ;; Transparency Window
     (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
-    ;; Centered mode
-    (centered-window-mode)
-    ;; Eww
-    (setq browse-url-browser-function 'eww-browse-url)
+
+    ;; ;; Eww
+    ;; (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Backup
   Keep emacs temp backup files in it's own directory
@@ -60,6 +59,7 @@ Adds a Custom theme to emacs
 * Packages
 ** Helm
   #+begin_src emacs-lisp
+    (helm-mode 1)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "M-x") 'helm-M-x)
     (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
@@ -151,7 +151,7 @@ Adds a Custom theme to emacs
   #+begin_src emacs-lisp
     (setq elfeed-feeds  
 	  '(
-	    ;News
+	    ;Feeds
 	    ("https://hnrss.org/frontpage" HN)
 	    ("https://hnrss.org/best" HN)
 	    ("https://www.afp.gov.au/feed/media-releases" AFP)
@@ -171,71 +171,34 @@ Adds a Custom theme to emacs
     (elfeed-update)
   #+end_src
 
-** Centaur Tabs
-#+begin_src emacs-lisp
-(centaur-tabs-mode t)
-(defun centaur-tabs-hide-tab (x)
-  "Do no to show buffer X in tabs."
-  (let ((name (format "%s" x)))
-    (or
-     ;; Current window is not dedicated window.
-     (window-dedicated-p (selected-window))
+** Bongo
+  #+begin_src emacs-lisp
+    (setq-default bongo-enabled-backends '(mpv))
+  #+end_src
+** From Source
+  #+begin_src emacs-lisp
+    (add-to-list 'load-path (concat user-emacs-directory "lisp/" ))
+    (load "multi-term")  ;; Load My Terminal
+  #+end_src
 
-     ;; Buffer name not match below blacklist.
-     (string-prefix-p "*epc" name)
-     (string-prefix-p "*helm" name)
-     (string-prefix-p "*Helm" name)
-     (string-prefix-p "*Compile-Log*" name)
-     (string-prefix-p "*lsp" name)
-     (string-prefix-p "*company" name)
-     (string-prefix-p "*Flycheck" name)
-     (string-prefix-p "*tramp" name)
-     (string-prefix-p " *Mini" name)
-     (string-prefix-p "*help" name)
-     (string-prefix-p "*straight" name)
-     (string-prefix-p " *temp" name)
-     (string-prefix-p "*Help" name)
-     (string-prefix-p "*mybuf" name)
-     (string-prefix-p "*elfeed-log" name)
-     (string-prefix-p "*scratch" name)
-     (string-prefix-p "*Messages" name)
-     (string-prefix-p "*dashboard" name)
-     (string-prefix-p "*MULTI-TERM-DEDICATED" name)
-     (string-prefix-p "*Bongo" name)
-     (string-prefix-p "*clangd" name)
-     ;; Is not magit buffer.
-     (and (string-prefix-p "magit" name)
-	  (not (file-name-extension name)))
-     )))
-
-(setq centaur-tabs-set-icons t)
-(setq centaur-tabs-plain-icons t)
-(setq centaur-tabs-set-close-button nil)
-(setq centaur-tabs-modified-marker "*")
-
-;(add-hook 'dired-mode-hook 'centaur-tabs-local-mode)
-(global-set-key (kbd "C-c <left>")  'centaur-tabs-backward)
-(global-set-key (kbd "C-c <right>") 'centaur-tabs-forward)
-(global-set-key (kbd "C-t") 'centaur-tabs--create-new-tab)
-
-#+end_src  
+  
 ** Yasnippet
   #+begin_src emacs-lisp
-   (yas-global-mode 1)
+;   (yas-global-mode 1)
   #+end_src
 *** TODO
     Add custom snippet
     
 ** LSP
 #+begin_src emacs-lisp
-  (add-hook 'c-mode-hook 'lsp)
-  (add-hook 'c++-mode-hook 'lsp)
-  
-  ;;(add-hook 'python-mode-hook 'lsp)
+  ;; (add-hook 'c-mode-hook 'lsp)
+  ;; (add-hook 'c++-mode-hook 'lsp)
 
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-diagnostics-provider :none)
+  ;; ;;(add-hook 'python-mode-hook 'lsp)
+
+  ;; (setq lsp-headerline-breadcrumb-enable nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-diagnostics-provider :none)
 
 #+end_src
 

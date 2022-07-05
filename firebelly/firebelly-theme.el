@@ -19,7 +19,7 @@
     ;; kempson's base16: https://github.com/chriskempson/base16
     ;; 90a959
   ((palette
-    '("#a1393a" ; RED
+    '("#aa4c4d" ; RED
       "#d28445"  ;ORANGE
       "#f4bf75" ; YELLOW
       "#6798DB" ; GREEN 

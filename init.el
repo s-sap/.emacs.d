@@ -8,10 +8,6 @@
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/myInit.org"))
 
-
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -21,29 +17,12 @@
  '(bongo-confirm-flush-playlist t)
  '(bongo-default-directory "~/Music/")
  '(bongo-insert-whole-directory-trees t)
- '(centaur-tabs-background-color "black")
- '(centaur-tabs-mode t nil (centaur-tabs))
- '(centaur-tabs-plain-icons t)
- '(centaur-tabs-set-close-button nil)
- '(centaur-tabs-set-icons t)
- '(centaur-tabs-show-new-tab-button nil)
- '(centaur-tabs-style "alternate")
+ '(custom-safe-themes
+   '("e4c342d31caf42a9bd55d45f12ae6bd88ab28346f021b6124a00344f5434e46c" "9eecd688ffd00df3a218a323ceedf3f0f2950dd2347c9b708929a347bf46d2d4" default))
  '(dashboard-banner-logo-title nil)
  '(dashboard-buffer-last-width 190)
  '(dashboard-center-content t)
  '(dashboard-footer "Who the hell uses VIM anyway? Go Evil!")
- '(dashboard-navigator-buttons
-   (quote
-    ((("" "Rss" "Elfeed Feed"
-       (lambda
-	 (&rest _)
-	 (elfeed))
-       ’warning "" "")
-      ("" "Music" "Bongo Music Player"
-       (lambda
-	 (&rest _)
-	 (bongo))
-       ’warning "| " "")))))
  '(dashboard-set-file-icons t)
  '(dashboard-set-footer nil)
  '(dashboard-set-heading-icons t)
@@ -52,22 +31,13 @@
  '(dashboard-show-shortcuts nil)
  '(dired-dwim-target t)
  '(package-selected-packages
-   (quote
-    (pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors multi-term hydra helm elfeed doom-modeline dashboard centered-window bongo all-the-icons))))
+   '(ancient-one-dark-theme helm pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors hydra elfeed doom-modeline dashboard bongo all-the-icons)))
 
 
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(centaur-tabs-selected ((t (:background "#151515" :foreground "dark gray" :height 0.9))))
- '(centaur-tabs-selected-modified ((t (:background "#31343E" :foreground "light gray"))))
  '(dashboard-navigator ((t (:foreground "grey 30"))))
  '(fringe ((t (:background "#151515")))))
