@@ -113,38 +113,38 @@ Adds a Custom theme to emacs
   #+end_src   
 ** Hydra
   #+begin_src emacs-lisp
-  (defhydra hydra-windowing-options (:color red)
-  "
-     Window Move         Window Resize 
-    -------------------------------------
-    _p_ : Move Up        _<up>_   : Shrink Window
-    _n_ : Move Down      _<down>_ : Enlarge Window
-    _b_ : Move Left      _<left>_ : Shrink Window Left
-    _f_ : Move Right     _<right>_: Enlarge Window Right
-  "
-    ("p" windmove-swap-states-up nil)
-    ("n" windmove-swap-states-down nil)
-    ("b" windmove-swap-states-left nil)
-    ("f" windmove-swap-states-right nil)
+      (defhydra hydra-windowing-options (:color red)
+      "
+	 Window Move         Window Resize 
+	-------------------------------------
+	_p_ : Move Up        _<up>_   : Shrink Window
+	_n_ : Move Down      _<down>_ : Enlarge Window
+	_b_ : Move Left      _<left>_ : Shrink Window Left
+	_f_ : Move Right     _<right>_: Enlarge Window Right
+      "
+	("p" windmove-swap-states-up nil)
+	("n" windmove-swap-states-down nil)
+	("b" windmove-swap-states-left nil)
+	("f" windmove-swap-states-right nil)
 
-    ("<up>" shrink-window nil)
-    ("<down>" enlarge-window nil)
-    ("<right>" shrink-window-horizontally nil)
-    ("<left>" enlarge-window-horizontally nil))
-  (global-set-key(kbd "C-c m") 'hydra-windowing-options/body)
-  
-  (defhydra hydra-helpful-cmd (:color red)
-  "
-     Helpful Commands
-    --------------------------
-    _l_ : Show Line Numbers
-    _c_ : Center Window
-  "
-  ("l" display-line-numbers-mode nil)
-  ("c" centered-window-mode nil)
-)
-  (global-set-key (kbd "C-c h") 'hydra-helpful-cmd/body)
-  
+	("<up>" shrink-window nil)
+	("<down>" enlarge-window nil)
+	("<right>" shrink-window-horizontally nil)
+	("<left>" enlarge-window-horizontally nil))
+      (global-set-key(kbd "C-c m") 'hydra-windowing-options/body)
+
+      (defhydra hydra-helpful-cmd (:color red)
+      "
+	 Helpful Commands
+	--------------------------
+	_l_ : Show Line Numbers
+        _m_ : Bongo Music Player
+      "
+      ("l" display-line-numbers-mode nil)
+      ("m" bongo-playlist nil)
+    )
+      (global-set-key (kbd "C-c h") 'hydra-helpful-cmd/body)
+
   #+end_src
 
 ** Elfeed

@@ -30,7 +30,7 @@
       "#d9d9d9"))
    ;; Simple grayscale palette.
    (greys
-    '("#151515" "#292929" "#954141" "#555555"
+    '("#101010" "#292929" "#954141" "#555555"
       "#666666" "#6f6f6f" "#969696" "#999999" "#606060")))
 
   ;; Tiny functions to make getting from the palettes easier.
@@ -156,7 +156,7 @@
        ((t (:background ,(grey 0) :foreground ,(color 1)))))
      ; Helm
      `(helm-selection
-       ((t (:background ,"#444444"))))
+       ((t (:foreground, "grey" :background ,"#303030"))))
 
    ;; tab-bar-mode
      `(tab-bar-tab-inactive
@@ -166,6 +166,17 @@
      `(tab-bar
        ((t (:background, "#151515" :height 1.0))))
 
+     ; Company
+     '(company-echo-common ((t (:foreground "SpringGreen3"))))
+     '(company-preview-common ((t (:inherit company-preview :foreground "SpringGreen3"))))
+     '(company-scrollbar-fg ((t (:background "#202020"))))
+     '(company-template-field ((t (:background "gray20"))))
+     '(company-tooltip ((t (:background "#151515" :foreground "gray50"))))
+     '(company-tooltip-annotation ((t (:foreground "gray60"))))
+     '(company-tooltip-common ((t (:foreground "white smoke"))))
+     '(company-tooltip-common-selection ((t (:inherit company-tooltip-common))))
+     '(company-tooltip-selection ((t (:background "#404040"))))
+     
      ; Term
      '(term-color-black ((t (:foreground "#3F3F3F" :background "#2B2B2B"))))
      '(term-color-blue ((t (:foreground "#7CB8BB" :background "#4C7073"))))
