@@ -104,7 +104,7 @@ Adds a Custom theme to emacs
 	    (,(all-the-icons-octicon "radio-tower" :height 1 :v-adjust 0.0)
 	     "Music"
 	     "Bongo Music Player"
-	     (lambda (&rest _) (bongo)) ’warning "| " "")
+	     (lambda (&rest _) (bongo-playlist)) ’warning "| " "")
 
 
 
@@ -173,35 +173,33 @@ Adds a Custom theme to emacs
 
 ** Bongo
   #+begin_src emacs-lisp
-    (setq-default bongo-enabled-backends '(mpv))
-  #+end_src
-** From Source
-  #+begin_src emacs-lisp
-    (add-to-list 'load-path (concat user-emacs-directory "lisp/" ))
-    (load "multi-term")  ;; Load My Terminal
-  #+end_src
 
-  
+  #+end_src
 ** Yasnippet
   #+begin_src emacs-lisp
-;   (yas-global-mode 1)
+    (yas-global-mode 1)
   #+end_src
 *** TODO
     Add custom snippet
     
 ** LSP
 #+begin_src emacs-lisp
-  ;; (add-hook 'c-mode-hook 'lsp)
-  ;; (add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
 
   ;; ;;(add-hook 'python-mode-hook 'lsp)
 
-  ;; (setq lsp-headerline-breadcrumb-enable nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-diagnostics-provider :none)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-diagnostics-provider :none)
 
 #+end_src
-
+** From Source
+  #+begin_src emacs-lisp
+    (add-to-list 'load-path (concat user-emacs-directory "lisp/" ))
+    (load "multi-term")  ;; Load My Terminal
+  #+end_src
+  
 
 * Comments
 ** Required Package

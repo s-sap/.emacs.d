@@ -8,6 +8,7 @@
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/myInit.org"))
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,7 +32,7 @@
  '(dashboard-show-shortcuts nil)
  '(dired-dwim-target t)
  '(package-selected-packages
-   '(ancient-one-dark-theme helm pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors hydra elfeed doom-modeline dashboard bongo all-the-icons)))
+   '(helm pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors hydra elfeed doom-modeline dashboard bongo all-the-icons)))
 
 
 (custom-set-faces
@@ -39,5 +40,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bongo-currently-playing-track ((t (:inherit bongo-track :weight bold :height 1))))
+ '(company-echo-common ((t (:foreground "SpringGreen3"))))
+ '(company-preview-common ((t (:inherit company-preview :foreground "SpringGreen3"))))
+ '(company-scrollbar-fg ((t (:background "#202020"))))
+ '(company-template-field ((t (:background "gray20"))))
+ '(company-tooltip ((t (:background "#151515" :foreground "gray50"))))
+ '(company-tooltip-annotation ((t (:foreground "gray60"))))
+ '(company-tooltip-common ((t (:foreground "white smoke"))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-common))))
+ '(company-tooltip-selection ((t (:background "#404040"))))
  '(dashboard-navigator ((t (:foreground "grey 30"))))
  '(fringe ((t (:background "#151515")))))
