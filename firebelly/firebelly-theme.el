@@ -156,7 +156,7 @@
        ((t (:background ,(grey 0) :foreground ,(color 1)))))
      ; Helm
      `(helm-selection
-       ((t (:foreground, "grey" :background ,"#303030"))))
+       ((t (:foreground, "light green" :background ,"#303030" :bold t))))
 
    ;; tab-bar-mode
      `(tab-bar-tab-inactive

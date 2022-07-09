@@ -30,8 +30,6 @@ Adds a Custom theme to emacs
     ;; Transparency Window
     (add-to-list 'default-frame-alist '(alpha . (90 . 77)))
 
-    ;; ;; Eww
-    ;; (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Backup
   Keep emacs temp backup files in it's own directory
@@ -47,8 +45,8 @@ Adds a Custom theme to emacs
   (global-set-key (kbd "C-x C-a") 'toggle-frame-fullscreen)
   (global-set-key (kbd "C-c c") 'tab-switcher)
   (global-set-key (kbd "C-c t") 'multi-term-dedicated-toggle)
-
-#+end_src
+  (global-set-key (kbd "C-c C-.") 'dired-sidebar-toggle-sidebar)
+#+end_src 
 
 * Org
   #+begin_src emacs-lisp

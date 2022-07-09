@@ -31,7 +31,7 @@
  '(dashboard-show-shortcuts nil)
  '(dired-dwim-target t)
  '(package-selected-packages
-   '(all-the-icons-dired helm pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors hydra elfeed doom-modeline dashboard bongo all-the-icons)))
+   '(dired-sidebar rust-mode all-the-icons-dired helm pdf-tools rtags flycheck pyvenv centaur-tabs yasnippet company lsp-mode magit projectile org-bullets multiple-cursors hydra elfeed doom-modeline dashboard bongo all-the-icons)))
 
 
 (custom-set-faces
